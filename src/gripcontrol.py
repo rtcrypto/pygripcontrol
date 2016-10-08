@@ -148,7 +148,7 @@ def decode_websocket_events(body):
 		at = typeline.find(b' ')
 		if at != -1:
 			etype = typeline[:at]
-			clen = int('0x' + typeline[at + 1:], 16)
+			clen = int(b'0x' + typeline[at + 1:], 16)
 			content = body[start:start + clen]
 			start += clen + 2
 			e = WebSocketEvent(etype, content)
