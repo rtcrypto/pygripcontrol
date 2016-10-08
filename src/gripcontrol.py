@@ -68,7 +68,7 @@ def parse_grip_uri(uri):
 def validate_sig(token, key):
 	# jwt expects the token in utf-8
 	if _is_unicode_instance(token):
-		token = token.encode('utf-8')	
+		token = token.encode('utf-8')
 
 	try:
 		claim = jwt.decode(token, key, verify_expiration=False)
@@ -139,7 +139,7 @@ def decode_websocket_events(body):
 	out = list()
 	start = 0
 	while start < len(body):
-		at = body.find('\r\n', start)
+		at = body.find(b'\r\n', start)
 		if at == -1:
 			raise ValueError('bad format')
 		typeline = body[start:at]
@@ -211,7 +211,7 @@ def _get_hold_channels(channels):
 
 # Get a hash representing the specified response parameter. The
 # resulting hash is used for creating GRIP proxy hold instructions.
-def _get_hold_response(response): 
+def _get_hold_response(response):
 	iresponse = None
 	if response is not None:
 		if _is_basestring_instance(response) or isinstance(response, bytes):
